@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="paperjs/docs/assets/js/paper.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+	
+
+
+// Adapted from the following Processing example:
+// http://processing.org/learning/topics/follow3.html
+
+// The amount of points in the path:
+var points = 25;
+
+// The distance between the points:
+var length = 35;
+
+var path = new Path({
+	strokeColor: '#E87921',
+	strokeWidth: 20,
+	strokeCap: 'round'
+});
+
+var start = view.center / [10, 1];
+for (var i = 0; i < points; i++)
+	path.add(start + new Point(i * length, 0));
+
+function onMouseMove(event) {
+	path.firstSegment.point = event.point;
+	for (var i = 0; i < points - 1; i++) {
+		var segment = path.segments[i];
+		var nextSegment = segment.next;
+		var vector = segment.point - nextSegment.point;
+		vector.length = length;
+		nextSegment.point = segment.point - vector;
+	}
+	path.smooth();
+}
+
+function onMouseDown(event) {
+	path.fullySelected = true;
+	path.strokeColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+}
+
+function onMouseUp(event) {
+	path.fullySelected = false;
+	path.strokeColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+}
+
+function onResize(event) {
+	// Whenever the window is resized, recenter the path:
+	path.position = view.center;
+}
+	
+// Create a circle shaped path with its center at the center
+// of the view and a radius of 30:
+// var path = new Path.Circle({
+// 	center: view.center,
+// 	radius: 40,
+// 	strokeColor: 'black'
+// });
+
+// function onResize(event) {
+// 	// Whenever the window is resized, recenter the path:
+// 	path.position = view.center;
+// }
+
+	// // Create a Paper.js Path to draw a line into it:
+	// var path = new Path();
+	// // Give the stroke a color
+	// path.strokeColor = 'black';
+	// var start = new Point(10, 100);
+	// // Move to start and draw a line from there
+	// path.moveTo(start);
+	// // Note the plus operator on Point objects.
+	// // PaperScript does that for us, and much more!
+	// path.lineTo(start + [ 100, -50 ]);
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" width="1000" height="1000" resize></canvas>
+</body>
+</html>
