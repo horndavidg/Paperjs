@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="paperjs/docs/assets/js/paper.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+	
+var myPoint = new Point(10, 20); 
+// sets a location on the canvas using using X and Y coordinates.
+// console.log(myPoint); // { x: 10, y: 20 }
+
+var myPath = new Path();
+myPath.add(myPoint);
+// the coordinates are now represented in a path
+
+myPath.add(new Point(30,30), new Point(50,70));
+// you can also add multiple points at one time
+
+myPath.add(new Point(500,500));
+// by adding a new point to the path the points are connected by a vector (length and angle)
+
+myPath.insert(0, new Point(10,100));
+// can insert points in relation to the index of the other points in a given path
+
+myPath.strokeColor = 'red';
+// this assigns the visual color to the path
+
+
+
+// console.log(myPath);
+
+var rect = new Rectangle(40, 40, 200, 100);
+// creates a new rectangle giving the upper right hand starting coordinates first and then the width and height. These variables can also be passed in as a new point and size variables.
+
+// rectangles also have additional properties that can be accessed once they are created including: center, topLeft, bottomLeft, bottomRight, leftCenter, topCenter, rightCenter and bottomCenter.
+
+// the rectangle can also be described as follows:
+// var rect = new Rectangle();
+// rect.left = 100;
+// rect.right = 200;
+// rect.bottom = 400;
+// rect.top = 200;
+// rect = {x: 100, y:200, width: 100, height: 200}
+
+console.log(rect); 
+
+
+var vector = new Point(24, 60);
+console.log(vector.length);
+console.log(vector.angle);
+
+// ENTER Paperjs HERE! 
+
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
