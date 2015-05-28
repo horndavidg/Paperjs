@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="../paperjs/docs/assets/js/paper.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+
+
+// // Create a new path once, when the script is executed:
+// var myPath = new Path();
+// myPath.strokeColor = 'black';
+
+// // This function is called whenever the user
+// // clicks the mouse in the view:
+// function onMouseDown(event) {
+// 	// Add a segment to the path at the position of the mouse:
+// 	myPath.add(event.point);
+
+// }
+
+// We start by defining an empty variable that is visible by both
+// mouse handlers.
+tool.minDistance = 10;
+
+	 //    myPath = new Path();
+		// myPath.strokeColor = 'black';
+
+function onMouseDrag(event) {
+	
+var rect = new Path.Rectangle(event.point, (event.point + event.delta.length));	
+//myPath.add(brush);
+rect.fillColor = 'black';
+
+}
+
+// 	var circle = new Path.Circle({
+// 		center: event.middlePoint,
+// 		radius: event.delta.length / 2
+// 	});
+// 	circle.fillColor = 'black';
+// }
+
+
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>

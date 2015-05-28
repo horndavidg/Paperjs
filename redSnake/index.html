@@ -3,20 +3,22 @@
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 <!-- Load the Paper.js library -->
-<script type="text/javascript" src="paperjs/docs/assets/js/paper.js"></script>
+<script type="text/javascript" src="../paperjs/docs/assets/js/paper.js"></script>
 <!-- Define inlined PaperScript associate it with myCanvas -->
 <script type="text/paperscript" canvas="myCanvas">
 	
-
-
-// Adapted from the following Processing example:
-// http://processing.org/learning/topics/follow3.html
+var textItem = new PointText({
+	content: 'Move me around and click, see what happens!',
+	point: new Point(20, 20),
+	fillColor: 'black',
+});
+// add text to the canvas.....
 
 // The amount of points in the path:
 var points = 25;
 
 // The distance between the points:
-var length = 40;
+var length = 20;
 
 var path = new Path({
 	strokeColor: '#E87921',
@@ -24,9 +26,13 @@ var path = new Path({
 	strokeCap: 'round'
 });
 
-var start = view.center / [10, 1];
+
+var start = view.center // [10, 1];
 for (var i = 0; i < points; i++)
 	path.add(start + new Point(i * length, 0));
+// populates the path segments based on a starting point in the middle of the 
+// page and adds segments on to fill the # of points listed above
+
 
 function onMouseMove(event) {
 	path.firstSegment.point = event.point;
@@ -48,6 +54,20 @@ function onMouseDown(event) {
 function onMouseUp(event) {
 	path.fullySelected = false;
 	path.strokeColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+	
+	//path.dashArray = [10, 12]
+	// changes the solid stroke to a dashed stroke (dash length, space length)
+		
+		if (path.dashArray == null) {
+			path.dashArray = [10, 12];
+		} else {
+             path.dashArray = null;
+			} // changes the stoke to and from dashed with clicks
+
+	length += 2;
+	// increases the stroke length by 2 everytime it's clicked
+
+	// console.log(length);
 }
 
 function onResize(event) {

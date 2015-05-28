@@ -1,0 +1,22 @@
+
+#myCanvas {
+     
+     position: absolute;
+     width: 90%; 
+     height: 90%;
+     overflow: hidden;
+     border: 10px solid brown;
+     border-style: groove;
+     margin-right: 6%;
+     margin-left: 4%;
+     margin-top: 2%;
+     margin-bottom: 8%;
+     background: white;
+
+}
+
+body {
+	
+	background: grey;
+	
+}
