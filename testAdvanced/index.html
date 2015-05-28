@@ -3,11 +3,54 @@
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 <!-- Load the Paper.js library -->
-<script type="text/javascript" src="paperjs/docs/assets/js/paper.js"></script>
+<script type="text/javascript" src="../paperjs/docs/assets/js/paper.js"></script>
 <!-- Define inlined PaperScript associate it with myCanvas -->
 <script type="text/paperscript" canvas="myCanvas">
 
-// ENTER Paperjs HERE! 
+var path = new Path();
+path.strokeColor = 'black';
+path.add(new Point(30, 75)); 
+path.add(new Point(30, 25)); 
+path.add(new Point(80, 25));
+path.add(new Point(80, 75));
+path.closed = true;
+
+// Select the path, so we can see its handles:
+path.fullySelected = true;
+
+// Create a copy of the path and move it 100pt to the right:
+var copy = path.clone();
+// copy.fullySelected = true;
+copy.position.x += 100;
+
+// Smooth the segments of the copy:
+copy.smooth();
+
+
+// var circle = new Circle(new Point(400, 400), 50);
+// var myCircle = new Path.Circle(circle);
+// myCircle.fillColor = 'green';
+
+// var myCircle2 = new Path.Circle(new Point(600, 400), 20);
+// myCircle2.fillColor = 'pink';
+
+// var cornerSize = new Size(30, 30)
+
+
+// var test = new Path.RegularPolygon(new Point(300, 300), 8, 200);
+// //path.fillColor = '#e9e9ff';
+// test.strokeColor = "green";
+
+// test.selected = true;
+// console.log(test);
+
+////////////////////////////////////////////////////
+
+var myCircle = new Path.Circle(new Point(300, 300), 50);
+myCircle.strokeColor = 'black'
+myCircle.selected = true;
+
+myCircle.removeSegment(0);
 
 </script>
 </head>
